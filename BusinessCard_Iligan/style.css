@@ -1,0 +1,198 @@
+/* ---------------------------------------------------
+   Dhayan Jane Iligan — Digital Business Card
+   Ported from the Figma "Frame 1" (front) and
+   "Frame 2" (back) business card designs
+--------------------------------------------------- */
+
+:root {
+  --white: #ffffff;
+  --grey-text: #c7cbe0;
+  --card-w: 700px;
+  --card-h: 400px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: #1e1e1e;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  padding: 50px 20px;
+}
+
+.page-title {
+  color: var(--white);
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: 0.5px;
+  margin-bottom: 40px;
+}
+
+.deck {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 50px;
+}
+
+.deck__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.deck__label {
+  color: #8b8fa3;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ---------- shared card shell ---------- */
+
+.card {
+  position: relative;
+  width: var(--card-w);
+  height: var(--card-h);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+}
+
+@media (max-width: 760px) {
+  .card {
+    transform: scale(calc((100vw - 40px) / 700));
+    transform-origin: top center;
+    margin-bottom: calc(var(--card-h) * -1 * (1 - (100vw - 40px) / 700));
+  }
+}
+
+/* dotted grid, faded from one corner */
+.card__dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.55) 1.3px, transparent 1.6px);
+  background-size: 16px 16px;
+  pointer-events: none;
+}
+
+.card__dots--front {
+  background-position: 0 100%;
+  -webkit-mask-image: radial-gradient(circle 260px at 6% 96%, #000 0%, transparent 75%);
+          mask-image: radial-gradient(circle 260px at 6% 96%, #000 0%, transparent 75%);
+}
+
+.card__dots--back {
+  -webkit-mask-image: radial-gradient(circle 280px at 96% 6%, #000 0%, transparent 75%);
+          mask-image: radial-gradient(circle 280px at 96% 6%, #000 0%, transparent 75%);
+}
+
+/* ---------- FRONT: logo card ---------- */
+
+.card--front {
+  background:
+    radial-gradient(ellipse 480px 380px at 20% 55%, rgba(214, 45, 122, 0.55), transparent 60%),
+    radial-gradient(ellipse 420px 380px at 50% 60%, rgba(255, 178, 120, 0.28), transparent 60%),
+    radial-gradient(ellipse 460px 420px at 80% 42%, rgba(47, 121, 189, 0.55), transparent 62%),
+    linear-gradient(160deg, #0c0b26 0%, #0a0a22 100%);
+}
+
+.card__front-content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.card__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card__bolt {
+  width: 34px;
+  height: auto;
+  object-fit: contain;
+}
+
+.card__brand-name {
+  color: var(--white);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.card__tagline {
+  color: var(--grey-text);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ---------- BACK: contact card ---------- */
+
+.card--back {
+  background: linear-gradient(135deg, #133f68 0%, #1c1440 45%, #55103f 100%);
+}
+
+.card__content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  padding: 8.5% 9%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card__name {
+  color: var(--white);
+  font-size: clamp(22px, 4.2vw, 30px);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.card__title {
+  margin-top: 4px;
+  color: var(--grey-text);
+  font-size: clamp(11px, 1.6vw, 13px);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.card__contact {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card__contact li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--white);
+  font-size: clamp(11px, 1.6vw, 13px);
+  font-weight: 400;
+}
+
+.card__icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
